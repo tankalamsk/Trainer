@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trainer</title>
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="resources/favicon.png" />
+    <!-- bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+    />
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="/stylesheet.css" />
+  </head>
+  <body class="bg-dark">
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" href="/dashboard">Trainer</a>
+
+            <a class="nav-link active" aria-current="page" href="/Analysis"
+              >Analysis</a
+            >
+            <a class="nav-link" href="/inprogress">Todo</a>
+            <a class="nav-link" href="/inprogress">Rating</a>
+            <a class="nav-link" href="/connections">connections</a>
+            <a class="nav-link" href="/logout">Logout</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- section -->
+	<div id="USER">
+		<p id="in">Here's your Analysis</p>
+    <h id="user">@<%=userName%></h>
+	</div>
+   
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Problemname</th>
+          <th scope="col">Rating</th>
+          <th scope="col">Accepted</th>
+          <th scope="col">Started</th>
+          <th scope="col">Finished</th>
+          <th scope="col">Duration(min:sec)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% datas.forEach(function(x){ %>
+        <tr>
+          <th scope="row"><%=x.date%></th>
+          <th><%= x.problemname %></th>
+          <th><%= x.rating %></th>
+          <th><%= x.accepted %></th>
+
+          <% var datetext = new Date(x.start).toTimeString();%> <% datetext =
+          datetext.split(' ')[0];%>
+          <th><%=datetext%></th>
+          <% datetext = new Date(x.finished).toTimeString();%> <% datetext =
+          datetext.split(' ')[0];%>
+          <th><%=datetext%></th>
+
+          <%var dif = new Date( x.finished).getTime() - new
+          Date(x.start).getTime();%> <%var Seconds = dif / 1000;%> <%
+          if(x.accepted=="YES"){%>
+          <th><%=Math.floor(Seconds/60)%> : <%=Seconds%60%></th>
+          <% } else {%>
+          <th>INF</th>
+          <% }%>
+        </tr>
+        <%})%>
+      </tbody>
+    </table>
+
+    <!-- footer -->
+    <footer class="bg-success">
+      <p>made with <span>&#10084;</span> for cf community</p>
+    </footer>
+    <!-- bootstrapjs -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- js -->
+    <script src="index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trainer</title>
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="resources/favicon.png" />
+    <!-- bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+    />
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="/stylesheet.css" />
+  </head>
+  <body class="bg-dark">
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="/login"
+              >Trainer</a
+            >
+
+            <a class="nav-link" href="/Analysis">Analysis</a>
+            <a class="nav-link" href="/inprogress">Todo</a>
+            <a class="nav-link" href="/inprogress">Rating</a>
+            <a class="nav-link" href="/connections">connections</a>
+            <a class="nav-link" href="/logout">Logout</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- section -->
+
+    <section class="row" id="section">
+      <div class="row col-lg-9 extra" id="search_bar">
+        <form action="/dashboard" method="POST">
+          <div class="row justify-content-center marginable">
+            <div class="col-lg-4 marginable">
+              <input
+                type="text"
+                class="form-control"
+                name="contestid"
+                placeholder="Contest_ID"
+                aria-label="Contest_ID"
+              />
+            </div>
+            <div class="col-lg-4 marginable">
+              <input
+                type="text"
+                class="form-control"
+                name="index"
+                placeholder="Question_ID"
+                aria-label="Question_ID"
+              />
+            </div>
+          </div>
+          <div class="row justify-content-center marginable">
+            <button type="submit" class="btn btn-success col-lg-3">
+              Generate question link
+            </button>
+          </div>
+          <div class="row justify-content-center marginable">
+            <button
+              type="button"
+              class="btn btn-success bg-success marginable col-lg-8"
+              id="question_box"
+            >
+              <a
+                style="color: white"
+                target="_blank"
+                href="https://codeforces.com/problemset/problem/<%= cI %>/<%= I %>"
+                id="discription"
+                ><%= problemDiscription %>
+              </a>
+            </button>
+          </div>
+        </form>
+      </div>
+      <!-- pause/resume toggler -->
+      <div class="col-lg-3 extra" id="timer">
+        <div class="row justify-content-center marginable">
+          <button
+            type="button"
+            class="btn btn-success col-lg-10 row justify-content-center marginable resume animate"
+           
+          >
+            STOP WATCH
+          </button>
+        </div>
+
+        <form
+          action="/list"
+          method="POST"
+          class="row justify-content-center marginable"
+        >
+          <button
+            type="submit"
+            class="btn btn-success col col-lg-10 row justify-content-center marginable"
+            id="Done"
+          >
+            I'am Done
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- section for timer -->
+    <section class="stopwatch">
+      <div
+        class="row justify-content-center marginable col-lg-9 extra STOPWATCH"
+        
+      >
+        <div class="bg-success col-lg-2" id="timing">
+          <p id="alignment">
+            <span id="seconds">00</span>:<span id="tens">00</span>
+          </p>
+        </div>
+        <div class="row justify-content-center marginable col-lg-12">
+          <button
+            type="button"
+            id="button-start"
+            class="btn btn-success col-lg-2 row justify-content-center margin"
+          >
+            Start
+          </button>
+          <button
+            type="button"
+            id="button-stop"
+            class="btn btn-success col-lg-2 row justify-content-center margin"
+          >
+            Stop
+          </button>
+          <button
+            type="button"
+            id="button-reset"
+            class="btn btn-success col-lg-2 row justify-content-center margin"
+          >
+            Reset
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="bg-success">
+      <p>made with <span>&#10084;</span> for cf community</p>
+    </footer>
+    <!-- bootstrapjs -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- js -->
+    <script src="/animation.js"></script>
+  </body>
+</html>
