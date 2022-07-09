@@ -1,6 +1,11 @@
 
 /* styles for sign in page */
 
+
+body{
+  margin-bottom: 40px;
+}
+
 .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;
@@ -167,4 +172,35 @@ p{
 }
 
 
+.circle {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  margin-right:50px;
+  
+  background: rgb(253, 249, 249);
+  border: 3px solid rgb(35, 29, 29);
+  color:rgb(60, 165, 8);
+  text-align: center;
+  font: 25px Arial, sans-serif;
+}
 
+
+
+.label {
+  color: white;
+  padding: 10px;
+margin-top: 40px;
+}
+
+.success {
+  background-color: #04AA6D;
+  margin-left: 6px;
+  border-radius: 5px;
+ 
+
+
+}
+.format{
+  margin: 50px 0px 20px 0px;
+}

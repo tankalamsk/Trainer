@@ -11,8 +11,8 @@ const passportLocalMangoose = require("passport-local-mongoose");
 
 const app = express();
 var problemName = "Name of the Problem";
-var contestId = 3;
-var index = "A";
+var contestId = 0;
+var index = "Z";
 var userName = "";
 var rating;
 
@@ -94,7 +94,7 @@ app.get("/Analysis", function (req, res) {
 });
 app.get("/Todo", function (req, res) {
   if (req.isAuthenticated()) {
-    res.render("Todo");
+    res.render("Todo",{userName:userName});
   } else {
     alert("you are not loged in");
     res.redirect("/login");
@@ -103,7 +103,7 @@ app.get("/Todo", function (req, res) {
 
 app.get("/dashboard", function (req, res) {
   if (req.isAuthenticated()) {
-    res.render("dashboard");
+    res.render("dashboard",{userName:userName});
   } else {
     alert("you are not loged in");
     res.redirect("/home");
@@ -114,8 +114,8 @@ app.get("/connections", function (req, res) {
     Data.find({}, function (err, datas) {
       if (err) throw err;
 
-      res.render("connections", { datas: datas });
-    });
+      res.render("connections", { datas: datas ,userName:userName});
+    }).sort({ start: -1 });
   } else {
     alert("you are not loged in");
     res.redirect("/home");
@@ -123,7 +123,7 @@ app.get("/connections", function (req, res) {
 });
 app.get("/inprogress", function (req, res) {
   if (req.isAuthenticated()) {
-    res.render("inprogress");
+    res.render("inprogress",{userName:userName});
   } else {
     alert("you are not loged in");
     res.redirect("/login");
@@ -213,6 +213,7 @@ app.post("/dashboard", function (req, res) {
           problemDiscription: problemName,
           cI: contestId,
           I: index,
+          userName:userName
         });
         const Data = mongoose.model("Data", dataSchema);
         var today = new Date();
@@ -244,9 +245,21 @@ app.post("/connections", function (req, res) {
       res.redirect("/connections");
     } else {
       const uservalidation = userID;
-      res.render("userlist", { datas: datas, uservalidation: uservalidation });
+      
+
+  Data.find({},function(err,wholedata){
+    if(err)
+    {
+      console.log(err);
+      alert("err");
+    }else{
+      res.render("userlist", { userName:userName,datas: datas, uservalidation: uservalidation ,Data:Data,wholedata:wholedata});
     }
-  });
+  })
+
+   
+    }
+  }).sort({ start: -1 });
 });
 
 app.listen(process.env.PORT || 3000, function () {

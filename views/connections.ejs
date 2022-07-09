@@ -36,14 +36,16 @@
             <a class="nav-link" href="/dashboard">Trainer</a>
 
             <a class="nav-link" href="/Analysis">Analysis</a>
+            <a  class="nav-link active" aria-current="page" href="/connections">connections</a>
             <a class="nav-link" href="/inprogress">Todo</a>
             <a class="nav-link" href="/inprogress">Rating</a>
-            <a class="nav-link active" aria-current="page" href="/connections"
-              >connections</a
-            >
+              
+            
             <a class="nav-link" href="/logout">Logout</a>
           </div>
         </div>
+        <%var character=userName.charAt(0)%>
+        <div class="circle"><%=character%></div>
       </div>
     </nav>  
     <!-- section -->
@@ -62,17 +64,19 @@
 <%    if(eachdata.id && userList.has(eachdata.id)){%>
 <%        if(eachdata.accepted==="YES"){%>
  <%       var contained=userList.get(eachdata.id);%>
-<%        userList.set(eachdata.id,contained+1);%>
+<%        userList.set(eachdata.id,contained+0);%>
   <%      }%>
 
 
 
 <%    }else if(eachdata.id){%>
-    <%      userList.set(eachdata.id,1);%>
+    <%      userList.set(eachdata.id,0);%>
   <%  }%>
 <%})%>
 
- <h id="trainerusers">Trainer Users</h>
+<div style="margin-bottom: 30px;">
+  <span class="label success">Trainer Users</span>
+</div>
    <table class="table table-dark table-striped">
       <thead>
         <tr>
