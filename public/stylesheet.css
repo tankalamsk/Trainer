@@ -204,3 +204,14 @@ margin-top: 40px;
 .format{
   margin: 50px 0px 20px 0px;
 }
+
+#carouselExampleInterval{
+  margin:100px 100px 100px 100px;
+}
+
+.carousel-caption {
+  position:fixed;
+  bottom: 100px;
+  
+  background-color: #04AA6D;
+}

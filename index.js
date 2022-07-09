@@ -93,7 +93,14 @@ app.get("/Analysis", function (req, res) {
   }
 });
 
-
+app.get("/About", function (req, res) {
+  if (req.isAuthenticated()) {
+    res.render("About",{userName:userName});
+  } else {
+    alert("you are not loged in");
+    res.redirect("/login");
+  }
+});
 
 
 
