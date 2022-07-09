@@ -101,7 +101,7 @@ app.get("/Status", function (req, res) {
   if (req.isAuthenticated()) {
     Data.find({}).sort({ "start": -1 }).exec(function(err, datas) {
       if(err) throw err;
-      res.render("status",{datas:datas,userName:userName});
+      res.render("Status",{datas:datas,userName:userName});
      });
     
   } else {
