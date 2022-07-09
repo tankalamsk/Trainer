@@ -92,6 +92,34 @@ app.get("/Analysis", function (req, res) {
     res.redirect("/login");
   }
 });
+
+
+
+
+
+app.get("/Status", function (req, res) {
+  if (req.isAuthenticated()) {
+    Data.find({}).sort({ "start": -1 }).exec(function(err, datas) {
+      if(err) throw err;
+      res.render("status",{datas:datas,userName:userName});
+     });
+    
+  } else {
+    alert("you are not loged in");
+    res.redirect("/login");
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
 app.get("/Todo", function (req, res) {
   if (req.isAuthenticated()) {
     res.render("Todo",{userName:userName});
@@ -109,6 +137,7 @@ app.get("/dashboard", function (req, res) {
     res.redirect("/home");
   }
 });
+
 app.get("/connections", function (req, res) {
   if (req.isAuthenticated()) {
     Data.find({}, function (err, datas) {
@@ -162,7 +191,7 @@ app.post("/list", function (req, res) {
       } else {
         console.log("Updated Docs : ", docs);
         alert("succesfully updated to analysis");
-        res.render("dashboard");
+        res.render("dashboard",{userName:userName});
       }
     }
   );
@@ -255,12 +284,38 @@ app.post("/connections", function (req, res) {
     }else{
       res.render("userlist", { userName:userName,datas: datas, uservalidation: uservalidation ,Data:Data,wholedata:wholedata});
     }
-  })
-
-   
-    }
+  })}
   }).sort({ start: -1 });
 });
+
+
+
+app.post("/userlist", function (req, res) {
+  const userID = req.body.usersearch;
+
+  Data.find({ id: userID }, function (err, datas) {
+    if (err || !datas.length) {
+      console.log(err);
+      alert("user" + userID + "not found");
+      res.redirect("/connections");
+    } else {
+      const uservalidation = userID;
+      
+
+  Data.find({},function(err,wholedata){
+    if(err)
+    {
+      console.log(err);
+      alert("err");
+    }else{
+      res.render("userlist", { userName:userName,datas: datas, uservalidation: uservalidation ,Data:Data,wholedata:wholedata});
+    }
+  })}
+  }).sort({ start: -1 });
+});
+
+
+
 
 app.listen(process.env.PORT || 3000, function () {
   console.log("server is live on 3000");

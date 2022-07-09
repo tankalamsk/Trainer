@@ -38,21 +38,21 @@
             <a class="nav-link" href="/Analysis">Analysis</a>
             <a  class="nav-link active" aria-current="page" href="/connections">connections</a>
             <a class="nav-link" href="/inprogress">Todo</a>
-            <a class="nav-link" href="/inprogress">Rating</a>
+            <a class="nav-link" href="/Status">Status</a>
              
             
             <a class="nav-link" href="/logout">Logout</a>
           </div>
         </div>
-        <%var character=userName.charAt(0)%>
-        <div class="circle"><%=character%></div>
+        <%var character=userName.charAt(0).toUpperCase()%>
+                <div class="circle"><%=character%></div>
         
       </div>
     </nav>
     <!-- section -->
     <section style="margin-top:40px">
       <form
-        action="/connections"
+        action="/userlist"
         method="POST"
         id="usersearch"
         class="row justify-content-center marginable"
@@ -60,7 +60,7 @@
         <input
           type="text"
           class="col-lg-2"
-          name="Userid"
+          name="usersearch"
           placeholder="User Id"
         />
         <button type="submit" id="Go" class="btn btn-outline-success col-lg-1">
@@ -68,7 +68,7 @@
         </button>
       </form>
       <div class="format">
-        <span class="label success">@<%=userName%></span>
+        <span class="label success"><%=uservalidation%></span>
       </div>
     
 
@@ -86,6 +86,7 @@
         </thead>
         <tbody>
           <% datas.forEach(function(x){ %>
+            <% if(x.id && x.rating && x.date && x.accepted && x.rating  && x.start ){%>
           <tr>
             <th scope="row"><%=x.date%></th>
             <th><%= x.problemname %></th>
@@ -107,24 +108,18 @@
             <th>Not Yet Solved</th>
             <% }%>
           </tr>
-          <%})%>
+          <%}})%>
         </tbody>
       </table>
 
-      <% let userList=new Map();%>
-<%  wholedata.forEach(function(eachdata){%>
-<%    if(eachdata.id && userList.has(eachdata.id)){%>
-<%        if(eachdata.accepted==="YES"){%>
- <%       var contained=userList.get(eachdata.id);%>
-<%        userList.set(eachdata.id,contained+1);%>
-  <%      }%>
-
-
-
-<%    }else if(eachdata.id){%>
-    <%      userList.set(eachdata.id,0);%>
-  <%  }%>
-<%})%>
+      <% let userList=new Map();%> <% wholedata.forEach(function(eachdata){%> <%
+        if(eachdata.id && userList.has(eachdata.id)){%> <%
+        if(eachdata.accepted==="YES"){%> <% var
+        contained=userList.get(eachdata.id);%> <%
+        userList.set(eachdata.id,contained+1);%> <% }%> <% }else
+        if(eachdata.id){%> <% if(eachdata.accepted==="YES"){%> <%
+        userList.set(eachdata.id,1)}else {%> <% userList.set(eachdata.id,0)%>
+        <%}}})%>
 
 <div class="format">
   <span class="label success">Trainer Users</span>

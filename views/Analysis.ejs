@@ -40,12 +40,12 @@
             >
             <a class="nav-link" href="/connections">connections</a>
             <a class="nav-link" href="/inprogress">Todo</a>
-            <a class="nav-link" href="/inprogress">Rating</a>
+            <a class="nav-link" href="/Status">Status</a>
 
             <a class="nav-link" href="/logout">Logout</a>
           </div>
         </div>
-        <%var character=userName.charAt(0)%>
+        <%var character=userName.charAt(0).toUpperCase()%>
         <div class="circle"><%=character%></div>
       </div>
     </nav>
@@ -71,6 +71,7 @@
       </thead>
       <tbody>
         <% datas.forEach(function(x){ %>
+          <% if(x.id && x.rating && x.date && x.accepted && x.rating  && x.start ){%>
         <tr>
           <th scope="row"><%=x.date%></th>
           <th><%= x.problemname %></th>
@@ -92,7 +93,7 @@
           <th>Not Yet Solved</th>
           <% }%>
         </tr>
-        <%})%>
+        <%}})%>
       </tbody>
     </table>
 
