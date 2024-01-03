@@ -19,6 +19,7 @@ stopwatch.
 • Used sessions based authentication to login users and  passport.js for persistent login sessions to reduce
 the stress of logging in everytime they use the app
 • Used Bootstrap for styling the Frontend and deployed the app with Heroku [https://cp-trainer.herokuapp.com/]
+(currently herokuapp services stopped) 
 
 Further Development
 • Providing  complete analysis of user’s progress  with the help of graphs and charts of the data in the database 
